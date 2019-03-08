@@ -5,7 +5,7 @@
          version="4.0">
 
     <welcome-file-list>
-        <welcome-file>product_save</welcome-file>
+        <welcome-file>product_list</welcome-file>
     </welcome-file-list>
 
     <servlet>
@@ -13,12 +13,33 @@
         <servlet-class>controller.ProductServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>UpdateProduct</servlet-name>
+        <servlet-class>controller.UpdateProduct</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>UpdateProduct</servlet-name>
+        <url-pattern>/UpdateProduct</url-pattern>
+        <url-pattern>/product_update</url-pattern>
+    </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>ProductServlet</servlet-name>
         <url-pattern>/product_list</url-pattern>
         <url-pattern>/product_input</url-pattern>
         <url-pattern>/product_save</url-pattern>
-        <url-pattern>/product_update</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteProduct</servlet-name>
+        <servlet-class>controller.DeleteProduct</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DeleteProduct</servlet-name>
+        <url-pattern>/DeleteProduct</url-pattern>
+        <url-pattern>/product_delete</url-pattern>
     </servlet-mapping>
 
 </web-app>

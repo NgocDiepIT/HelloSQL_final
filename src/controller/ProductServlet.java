@@ -1,6 +1,5 @@
 package controller;
 
-import database.Connection;
 import database.ProductHandler;
 import model.Product;
 
@@ -29,6 +28,7 @@ public class ProductServlet extends HttpServlet {
         String uri = request.getRequestURI();
         int lastIndex = uri.lastIndexOf("/");
         String action = uri.substring(lastIndex + 1);
+        //System.out.println(action);
         if (action.equals("product_input")) {
         } else if (action.equals("product_save")) {
             Product product = new Product();
@@ -36,14 +36,8 @@ public class ProductServlet extends HttpServlet {
             product.setDescription(request.getParameter("description"));
             product.setPrice(Float.parseFloat(request.getParameter("price")));
             new ProductHandler().insert(product);
-            request.setAttribute("products", product);
-        }
-        else if(action.equals("product_update")){
-//            int id = request.getParameter("name");
-//            Product product = Connection.getProduct;
-//            request.setAttribute("products", product);
-        }
-        else{
+            request.setAttribute("product", product);
+        } else {
             List<Product> products = new ProductHandler().getProducts();
             request.setAttribute("products", products);
         }
@@ -53,13 +47,8 @@ public class ProductServlet extends HttpServlet {
             dispatchUrl = "ProductForm.jsp";
         } else if (action.equals("product_save")) {
             dispatchUrl = "ProductDetails.jsp";
-        }
-        else if (action.equals("product_list"))
-        {
+        } else {
             dispatchUrl = "ProductList.jsp";
-        }
-        else {
-            dispatchUrl = "ProductUpdate.jsp";
         }
 
         if (dispatchUrl != null) {
